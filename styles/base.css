@@ -1,0 +1,229 @@
+/* ============================================
+   BASE - OFICIO Y PIEDRA
+   Reset + variables + tipografía
+   ============================================ */
+
+/* ============================================
+   FUENTES
+   ============================================ */
+@font-face {
+    font-family: 'Fraunces';
+    src: url('../assets/fonts/Fraunces-Variable.woff2') format('woff2-variations');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../assets/fonts/Inter-Variable.woff2') format('woff2-variations');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ============================================
+   VARIABLES
+   ============================================ */
+:root {
+    /* Colores del negocio (del JSON) */
+    --primario: #B85C38;
+    --secundario: #6B7A5A;
+    --fondo: #F4EFE8;
+    --texto: #2A2620;
+
+    /* Variaciones */
+    --primario-oscuro: #8F4428;
+    --primario-claro: #D9784F;
+    --secundario-oscuro: #4F5C42;
+    --secundario-claro: #8E9C7B;
+    --texto-suave: #5C554A;
+    --texto-tenue: #8A8275;
+    --blanco: #FFFFFF;
+    --piedra: #E8E1D6;
+    --borde: #DDD4C5;
+    --borde-fuerte: #C9BFAE;
+
+    /* Tipografía */
+    --fuente-titulos: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --fuente-cuerpo: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    /* Espaciado */
+    --esp-1: 4px;
+    --esp-2: 8px;
+    --esp-3: 12px;
+    --esp-4: 16px;
+    --esp-5: 20px;
+    --esp-6: 24px;
+    --esp-8: 32px;
+    --esp-10: 40px;
+    --esp-12: 48px;
+    --esp-16: 64px;
+    --esp-20: 80px;
+    --esp-24: 96px;
+    --esp-32: 128px;
+
+    /* Radios (sin redondeo, editorial) */
+    --radio-sm: 0px;
+    --radio-md: 0px;
+    --radio-lg: 0px;
+    --radio-full: 999px;
+
+    /* Transiciones */
+    --transicion: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    --transicion-lenta: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* Ancho máximo */
+    --max-ancho: 1280px;
+    --max-ancho-texto: 720px;
+}
+
+/* ============================================
+   RESET
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--fuente-cuerpo);
+    background: var(--fondo);
+    color: var(--texto);
+    min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Textura de papel muy sutil de fondo */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--fuente-titulos);
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--texto);
+    letter-spacing: -0.02em;
+}
+
+p {
+    margin-bottom: var(--esp-4);
+}
+
+a {
+    color: var(--primario);
+    text-decoration: none;
+    transition: color var(--transicion);
+}
+
+a:hover {
+    color: var(--primario-oscuro);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* ============================================
+   CONTENEDOR
+   ============================================ */
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.contenedor {
+    width: 100%;
+    max-width: var(--max-ancho);
+    margin: 0 auto;
+    padding: 0 var(--esp-6);
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--piedra);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primario);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primario-oscuro);
+}
+
+/* ============================================
+   SELECCIÓN
+   ============================================ */
+::selection {
+    background: var(--primario);
+    color: var(--fondo);
+}
+
+/* ============================================
+   UTILIDADES
+   ============================================ */
+.oculto {
+    display: none !important;
+}
+
+.texto-centro {
+    text-align: center;
+}
+
+/* ============================================
+   EVITAR SELECCIÓN DE TEXTO EN INTERACTIVOS
+   ============================================ */
+button,
+a,
+.faq-pregunta,
+.header-nav-link,
+.header-menu-btn,
+.btn,
+.proyecto-ficha-header,
+.servicio-item {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
